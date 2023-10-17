@@ -6,5 +6,4 @@ const userSchema = new Schema({
     url: { type: String, require: true, unique: true },
 });
 
-
 export const User = mongoose.model("user", userSchema);
