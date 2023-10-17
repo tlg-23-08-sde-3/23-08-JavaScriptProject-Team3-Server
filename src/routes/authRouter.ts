@@ -20,7 +20,7 @@ router.post("/signup", async (req, res) => {
     if (existingURL) {
         return res
             .status(400)
-            .send({ error: `URL ${url} is already taken, please choose a different URL` });
+            .send({ error: `URL: '${url}' is already taken, please choose a different URL` });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
