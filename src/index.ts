@@ -7,6 +7,7 @@ import { connect } from "./db/mongodb.js";
 /* API Routers */
 import authRouter from "./routes/authRouter.js";
 import weddingRouter from "./routes/weddingsRouter.js";
+import guestRouter from './routes/guestRouter.js';
 
 const app = express();
 app.use(express.json());
@@ -16,6 +17,7 @@ app.use(cors());
 /* Use Routers */
 app.use("/auth", authRouter);
 app.use("/wedding", weddingRouter);
+app.use("/guests", guestRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
