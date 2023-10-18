@@ -8,6 +8,9 @@ import { connect } from "./db/mongodb.js";
 import authRouter from "./routes/authRouter.js";
 import weddingRouter from "./routes/weddingsRouter.js";
 import guestRouter from './routes/guestRouter.js';
+import commentRouter from './routes/commentsRouter.js';
+import photoRouter from './routes/photoRouter.js';
+import registryRouter from './routes/registryRouter.js';
 
 const app = express();
 app.use(express.json());
@@ -18,6 +21,9 @@ app.use(cors());
 app.use("/auth", authRouter);
 app.use("/wedding", weddingRouter);
 app.use("/guests", guestRouter);
+app.use("/comments", commentRouter);
+app.use("/gallery", photoRouter);
+app.use("/registry", registryRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
