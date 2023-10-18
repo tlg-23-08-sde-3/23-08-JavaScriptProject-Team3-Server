@@ -14,6 +14,8 @@ interface IWedding {
     story: string | undefined;
 }
 
+const placeholder = "/placeholder.jpg";
+
 router.get("/:site", async (req, res) => {
     const { site } = req.params;
     const email = await getEmailFromSiteName(site);
@@ -28,7 +30,7 @@ router.get("/:site", async (req, res) => {
         return res.status(400).send({ error: `Unable to find any wedding data.` });
     }
 
-    return res.send(wedding);
+    res.send(wedding);
 });
 
 router.post("/:site", async (req, res) => {
@@ -48,15 +50,22 @@ router.post("/:site", async (req, res) => {
     }
 
     try {
-        const wedding = await Wedding.create({
-            _id: email,
-            name1,
-            name2,
-            date,
-            venue,
-            image,
-            story,
-        });
+        const wedding = await Wedding.findByIdAndUpdate(
+            email,
+            {
+                name1,
+                name2,
+                date,
+                venue,
+                image: image || placeholder,
+                story,
+            },
+            {
+                upsert: true,
+                new: true,
+            }
+        );
+
         res.send(wedding);
     } catch (err) {
         console.error("Failed to create new entry in wedding collection", err);
