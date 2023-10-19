@@ -55,36 +55,4 @@ router.post("/:site", async (req, res) => {
 
 });
 
-// router.post("/:site", async (req, res) => {
-//     const { comments } = req.body;
-//     const {site} = req.params;
-//     const email = await getEmailFromSiteName(site);
-
-//     if (!email) {
-//         return res.status(400).send({ error: `Unable to find site: ${site}.` });
-//     }
-
-//     try {
-
-//         const commentList = await CommentList.findByIdAndUpdate(
-//             email,
-//             {
-//                 comments
-//             },
-//             {
-//                 upsert: true,
-//                 new: true,
-//             }
-//         );
-
-//         res.send(commentList);
-//     } catch (e) {
-//         console.error("Failed to add comment to the list");
-//         res.status(500).send({
-//             error: `Failed to add comment to the database due to ${e}`,
-//         });
-//     }
-
-// });
-
 export default router;
