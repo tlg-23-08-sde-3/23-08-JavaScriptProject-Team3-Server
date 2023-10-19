@@ -36,7 +36,7 @@ router.post("/:site", async (req, res) => {
         const photoList = await PhotoList.findByIdAndUpdate(
             email,
             {
-                photos
+                photos: photos || []
             },
             {
                 upsert: true,
